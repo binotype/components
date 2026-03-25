@@ -1,4 +1,5 @@
 import { Component, ComponentWillLoad, Fragment, h, Host, Prop, State, Watch } from "@stencil/core"
+import "../polyfill"
 import { binotype } from "@binotype/model"
 import { Page } from "../Page"
 
