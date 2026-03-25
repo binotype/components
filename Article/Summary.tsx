@@ -6,7 +6,7 @@ export const Summary: FunctionalComponent<Summary.Properties> & {
 Summary.override = (
 	{ summary }: Summary.Properties,
 	children: VNode[],
-	utils: FunctionalUtilities,
+	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null => (
 	<main class="summary">
 		<p>{summary}</p>

@@ -8,7 +8,7 @@ export const Meta: FunctionalComponent<Meta.Properties> & {
 Meta.override = (
 	{ published, changed, wordCount, readingTime, author, publication }: Meta.Properties,
 	children: VNode[],
-	utils: FunctionalUtilities,
+	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null => (
 	<p>
 		{published && (

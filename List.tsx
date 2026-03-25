@@ -1,5 +1,5 @@
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
-import { Context } from "../Context"
+import { binotype } from "@binotype/model"
 import { Article } from "./Article"
 
 export const List: FunctionalComponent<Readonly<List.Properties>> & {
@@ -7,8 +7,8 @@ export const List: FunctionalComponent<Readonly<List.Properties>> & {
 } = (properties, children, utils) => List.override(properties, children, utils)
 List.override = (
 	{ article }: List.Properties,
-	children: VNode[],
-	utils: FunctionalUtilities,
+	_children: VNode[],
+	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null => (
 	<main class="list">
 		{article.articles?.map(section => (
@@ -18,6 +18,6 @@ List.override = (
 )
 export namespace List {
 	export interface Properties {
-		article: Context.Article
+		article: binotype.Context.Article
 	}
 }

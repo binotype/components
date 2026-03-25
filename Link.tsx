@@ -3,7 +3,7 @@ import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/cor
 export const Link: FunctionalComponent<Readonly<Link.Properties>> & {
 	override: FunctionalComponent<Link.Properties>
 } = (properties, children, utils) => Link.override(properties, children, utils)
-Link.override = ({ link }: Link.Properties, children: VNode[], utils: FunctionalUtilities): VNode | VNode[] | null =>
+Link.override = ({ link }: Link.Properties, children: VNode[], _utils: FunctionalUtilities): VNode | VNode[] | null =>
 	link && (
 		<div class="link">
 			<a href={link}>

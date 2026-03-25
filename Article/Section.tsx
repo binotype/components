@@ -10,7 +10,7 @@ export const Section: FunctionalComponent<Section.Properties> & {
 Section.override = (
 	{ id, type, title, link, content }: Section.Properties,
 	children: VNode[],
-	utils: FunctionalUtilities,
+	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null => (
 	<section id={id} class={`type-${type}`}>
 		{typeof title == "string" && <Header title={title} />}

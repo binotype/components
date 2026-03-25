@@ -6,7 +6,7 @@ export const SelfLink: FunctionalComponent<SelfLink.Properties> & {
 SelfLink.override = (
 	{ link, truncated }: SelfLink.Properties,
 	children: VNode[],
-	utils: FunctionalUtilities,
+	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null =>
 	link && (
 		<div class={`self-link${truncated ? " truncated" : ""}`}>

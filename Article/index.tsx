@@ -1,5 +1,5 @@
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
-import { Context } from "../../Context"
+import { binotype } from "@binotype/model"
 import { SelfLink } from "../SelfLink"
 import { Aside } from "./Aside"
 import { Content } from "./Content"
@@ -9,12 +9,19 @@ import { Section } from "./Section"
 import { Summary } from "./Summary"
 
 export const Article: FunctionalComponent<Article.Properties> & {
+  SelfLink: typeof SelfLink
+  Aside: typeof Aside
+  Content: typeof Content
+  Footer: typeof Footer
+  Header: typeof Header
+  Section: typeof Section
+  Summary: typeof Summary
 	override: FunctionalComponent<Article.Properties>
 } = (properties, children, utils) => Article.override(properties, children, utils)
 Article.override = (
 	{ id, mode, header, summary, link, truncated, aside, content, sections, articles, footer }: Article.Properties,
 	children: VNode[],
-	utils: FunctionalUtilities,
+	_: FunctionalUtilities,
 ): VNode | VNode[] | null =>
 	mode == "list" ? (
 		(articles?.map(article => <Article {...article} />) ?? null)
@@ -31,14 +38,21 @@ Article.override = (
 			{["header", "summary"].includes(mode) && link && <SelfLink link={link} truncated={truncated}></SelfLink>}
 		</article>
 	)
+Article.SelfLink = SelfLink
+Article.Aside = Aside
+Article.Content = Content
+Article.Footer = Footer
+Article.Header = Header
+Article.Section = Section
+Article.Summary = Summary
 export namespace Article {
 	export interface Properties extends Partial<Summary.Properties>, SelfLink.Properties {
 		id: string
-		mode: Context.Article.Mode
+		mode: binotype.Context.Article.Mode
 		header?: Header.Properties
 		aside?: Aside.Properties
 		content?: string
-		sections?: Context.Article.Section[]
+		sections?: binotype.Context.Article.Section[]
 		articles?: Properties[]
 		footer?: Footer.Properties
 	}

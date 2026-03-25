@@ -1,5 +1,4 @@
-import { describe, expect, it, test } from "vitest"
-import { binotype } from "../../index"
+import { binotype } from "@binotype/model"
 import { BinotypeSite } from "./index"
 
 describe("binotype-site", () => {

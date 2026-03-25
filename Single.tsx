@@ -1,5 +1,5 @@
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
-import { Context } from "../Context"
+import { binotype } from "@binotype/model"
 import { Article } from "./Article"
 
 export const Single: FunctionalComponent<Readonly<Single.Properties>> & {
@@ -8,7 +8,7 @@ export const Single: FunctionalComponent<Readonly<Single.Properties>> & {
 Single.override = (
 	{ article }: Single.Properties,
 	children: VNode[],
-	utils: FunctionalUtilities,
+	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null => (
 	<main class="single">
 		<Article {...article} />
@@ -17,6 +17,6 @@ Single.override = (
 )
 export namespace Single {
 	export interface Properties {
-		article: Context.Article
+		article: binotype.Context.Article
 	}
 }

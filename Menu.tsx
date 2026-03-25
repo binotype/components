@@ -5,8 +5,8 @@ export const Menu: FunctionalComponent<Readonly<Menu.Properties>> & {
 } = (properties, children, utils) => Menu.override(properties, children, utils)
 Menu.override = (
 	{ items, depth }: Menu.Properties,
-	children: VNode[],
-	utils: FunctionalUtilities,
+	_children: VNode[],
+	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null => (
 	<ul>
 		{items.map(item => (
