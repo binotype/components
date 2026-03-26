@@ -10,7 +10,7 @@ Header.override = (
 	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null => (
 	<header>
-		<h1>{title}</h1>
+		{title && <h1>{title}</h1>}
 		<Meta {...meta} />
 		<a href="../">
 			<svg width="2em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -22,6 +22,6 @@ Header.override = (
 )
 export namespace Header {
 	export interface Properties extends Meta.Properties {
-		title: string
+		title?: string
 	}
 }

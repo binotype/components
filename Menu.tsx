@@ -10,8 +10,8 @@ Menu.override = (
 ): VNode | VNode[] | null => (
 	<ul>
 		{items.map(item => (
-			<li class={item.selected == "current" ? "current" : item.selected == "parent" ? "current-parent" : ""}>
-				<a href={item.url}>{item.label}</a>
+			<li class={item.selected == "current" ? "current" : item.selected == "parent" ? "current-parent" : ""} title={item.description}>
+				<a href={item.url} >{item.label}</a>
 				{item.items && depth != 1 && <Menu items={item.items} depth={depth && depth - 1} />}
 			</li>
 		))}
@@ -21,6 +21,7 @@ export namespace Menu {
 	export interface Properties {
 		items: {
 			label: string
+			description?: string
 			url: string
 			selected?: "current" | "parent"
 			items?: Properties["items"]

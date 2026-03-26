@@ -11,8 +11,8 @@ List.override = (
 	_utils: FunctionalUtilities,
 ): VNode | VNode[] | null => (
 	<main class="list">
-		{article.articles?.map(section => (
-			<Article {...section} />
+		{article.articles?.map(article => (
+			<Article {...article} />
 		))}
 	</main>
 )
