@@ -9,13 +9,13 @@ import { Section } from "./Section"
 import { Summary } from "./Summary"
 
 export const Article: FunctionalComponent<Article.Properties> & {
-  SelfLink: typeof SelfLink
-  Aside: typeof Aside
-  Content: typeof Content
-  Footer: typeof Footer
-  Header: typeof Header
-  Section: typeof Section
-  Summary: typeof Summary
+	SelfLink: typeof SelfLink
+	Aside: typeof Aside
+	Content: typeof Content
+	Footer: typeof Footer
+	Header: typeof Header
+	Section: typeof Section
+	Summary: typeof Summary
 	override: FunctionalComponent<Article.Properties>
 } = (properties, children, utils) => Article.override(properties, children, utils)
 Article.override = (
