@@ -15,7 +15,7 @@ Menu.override = (
 				title={item.description}
 			>
 				<a href={item.url}>{item.label}</a>
-				{item.items && depth != 1 && <Menu items={item.items} depth={depth && depth - 1} />}
+				{item.items && item.items.length > 0 && depth != 1 && <Menu items={item.items} depth={depth && depth - 1} />}
 			</li>
 		))}
 	</ul>
