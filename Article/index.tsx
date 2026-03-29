@@ -48,7 +48,7 @@ Article.Summary = Summary
 export namespace Article {
 	export interface Properties extends Partial<Summary.Properties>, SelfLink.Properties {
 		id: string
-		mode: binotype.Context.Article.Mode
+		mode: binotype.Mode
 		header?: Header.Properties
 		aside?: Aside.Properties
 		content?: string

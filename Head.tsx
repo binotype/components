@@ -27,18 +27,18 @@ export const Head: FunctionalComponent<Readonly<Head.Properties>> = ({ context }
 					: { tag: "script", content: script },
 			) ?? []),
 
-			{ tag: "meta", attributes: { property: "og:title", content: context.article.header?.title ?? context.title } },
+			{ tag: "meta", attributes: { property: "og:title", content: context.article?.header?.title ?? context.title } },
 			context.description && { tag: "meta", attributes: { property: "og:description", content: context.description } },
 			context.image && { tag: "meta", attributes: { property: "og:image", content: context.image } },
 			context.url && { tag: "meta", attributes: { property: "og:url", content: context.url } },
-			{ tag: "meta", attributes: { property: "og:type", content: context.article.articles ? "website" : "article" } },
+			{ tag: "meta", attributes: { property: "og:type", content: context.article?.articles ? "website" : "article" } },
 			{ tag: "meta", attributes: { property: "og:site_name", content: context.title } },
-			context.article.articles &&
-				context.article.header?.published && {
+			context.article?.articles &&
+				context.article?.header?.published && {
 					tag: "meta",
 					attributes: { property: "article:published_time", content: context.article.header?.published },
 				},
-			context.article.articles &&
+			context.article?.articles &&
 				context.article.header?.author && {
 					tag: "meta",
 					attributes: { property: "article:author", content: context.article.header?.author },
