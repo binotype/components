@@ -6,14 +6,14 @@ import { Header } from "./Header"
 import { List } from "./List"
 import { Navigation } from "./Navigation"
 import { Single } from "./Single"
+import { Node } from "./Node"
 
-export const Page: FunctionalComponent<Readonly<Page.Properties>> & {
-	override: FunctionalComponent<Page.Properties>
-} = (properties, children, utils) => Page.override(properties, children, utils)
+export const Page: FunctionalComponent<Readonly<Page.Properties>> & { override: FunctionalComponent<Page.Properties> } =
+	(properties, children, utils) => Page.override(properties, children, utils)
 Page.override = (
 	{ site, debug }: Page.Properties,
 	children: VNode[],
-	_utils: FunctionalUtilities,
+	_utils: FunctionalUtilities
 ): VNode | VNode[] | null => {
 	const context = binotype.Context.create(site, window.location.pathname)
 	const navigation = <Navigation {...context.menu} />
@@ -42,7 +42,7 @@ Page.override = (
 }
 export namespace Page {
 	export interface Properties {
-		site: binotype.Site
+		site: binotype.Site<Node>
 		debug?: boolean
 	}
 }

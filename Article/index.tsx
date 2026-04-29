@@ -7,8 +7,9 @@ import { Footer } from "./Footer"
 import { Header } from "./Header"
 import { Section } from "./Section"
 import { Summary } from "./Summary"
+import { Node } from "../Node"
 
-export const Article: FunctionalComponent<Article.Properties> & {
+export const Article: FunctionalComponent<binotype.Context.Article<Node>> & {
 	SelfLink: typeof SelfLink
 	Aside: typeof Aside
 	Content: typeof Content
@@ -16,26 +17,30 @@ export const Article: FunctionalComponent<Article.Properties> & {
 	Header: typeof Header
 	Section: typeof Section
 	Summary: typeof Summary
-	override: FunctionalComponent<Article.Properties>
+	override: FunctionalComponent<binotype.Context.Article<Node>>
 } = (properties, children, utils) => Article.override(properties, children, utils)
 Article.override = (
-	{ id, mode, header, summary, link, truncated, aside, content, sections, articles, footer }: Article.Properties,
+	article: binotype.Context.Article<Node>,
 	children: VNode[],
-	_: FunctionalUtilities,
+	_: FunctionalUtilities
 ): VNode | VNode[] | null =>
-	mode == "list" ? (
-		(articles?.map(article => <Article {...article} />) ?? null)
+	article.mode == "list" ? (
+		(article.articles?.map(a => <Article {...a} />) ?? null)
 	) : (
-		<article id={id} class={`mode-${mode}`}>
-			{["full", "header"].includes(mode) && header && <Header {...header} />}
-			{["full", "header", "body"].includes(mode) && aside && <Aside {...aside} />}
-			{["full", "body"].includes(mode) && content && <Content content={content} />}
-			{["full", "body"].includes(mode) && sections && sections.map(section => <Section {...section} />)}
-			{["full", "body"].includes(mode) && articles && articles.map(article => <Article {...article} />)}
+		<article id={article.id} class={`mode-${article.mode}`}>
+			{["full", "header"].includes(article.mode) && <Header {...article} />}
+			{["full", "header", "body"].includes(article.mode) && <Aside {...article} />}
+			{["full", "body"].includes(article.mode) && <Content {...article} />}
+			{["full", "body"].includes(article.mode)
+				&& article.sections
+				&& article.sections.map(section => <Section {...section} />)}
+			{["full", "body"].includes(article.mode) && article.articles && article.articles.map(a => <Article {...a} />)}
 			{children}
-			{["full", "body"].includes(mode) && footer && <Footer {...footer} />}
-			{["summary"].includes(mode) && summary && <Summary summary={summary} />}
-			{["header", "summary"].includes(mode) && link && <SelfLink link={link} truncated={truncated}></SelfLink>}
+			{["full", "body"].includes(article.mode) && <Footer {...article} />}
+			{["summary"].includes(article.mode) && article.content && <Summary {...article} />}
+			{["header", "summary"].includes(article.mode) && article.link && (
+				<SelfLink link={article.link} truncated={article.mode == "summary"}></SelfLink>
+			)}
 		</article>
 	)
 Article.SelfLink = SelfLink
@@ -45,15 +50,4 @@ Article.Footer = Footer
 Article.Header = Header
 Article.Section = Section
 Article.Summary = Summary
-export namespace Article {
-	export interface Properties extends Partial<Summary.Properties>, SelfLink.Properties {
-		id: string
-		mode: binotype.Mode
-		header?: Header.Properties
-		aside?: Aside.Properties
-		content?: string
-		sections?: binotype.Context.Article.Section[]
-		articles?: Properties[]
-		footer?: Footer.Properties
-	}
-}
+export namespace Article {}

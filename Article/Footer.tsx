@@ -1,24 +1,21 @@
+import { binotype } from "@binotype/model"
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
+import { Node } from "../Node"
 
-export const Footer: FunctionalComponent<Footer.Properties> & {
-	override: FunctionalComponent<Footer.Properties>
+export const Footer: FunctionalComponent<binotype.Context.Article<Node>> & {
+	override: FunctionalComponent<binotype.Context.Article<Node>>
 } = (properties, children, utils) => Footer.override(properties, children, utils)
 Footer.override = (
-	{ copyright, license }: Footer.Properties,
+	{ meta }: binotype.Context.Article<Node>,
 	children: VNode[],
-	_utils: FunctionalUtilities,
+	_utils: FunctionalUtilities
 ): VNode | VNode[] | null => (
 	<footer>
 		{children}
 		<p>
-			{copyright && <span id="footer-copyright">{copyright}</span>}
-			{license && <span id="footer-license">{license}</span>}
+			{meta?.copyright && <span id="footer-copyright">{meta.copyright}</span>}
+			{meta?.license && <span id="footer-license">{meta.license}</span>}
 		</p>
 	</footer>
 )
-export namespace Footer {
-	export interface Properties {
-		copyright: string
-		license: string
-	}
-}
+export namespace Footer {}

@@ -1,16 +1,14 @@
-import { Component, ComponentWillLoad, Fragment, h, Host, Prop, State, Watch } from "@stencil/core"
+import { Component, ComponentWillLoad, Fragment, h, Host, Prop, State, VNode, Watch } from "@stencil/core"
 import "../polyfill"
 import { binotype } from "@binotype/model"
 import { Page } from "../Page"
+import { Node } from "../Node"
 
-@Component({
-	tag: "binotype-site",
-	styleUrl: "style.css",
-})
+@Component({ tag: "binotype-site", styleUrl: "style.css" })
 export class BinotypeSite implements ComponentWillLoad {
-	@Prop() site?: binotype.Site | string
+	@Prop() site?: binotype.Site<VNode> | string
 	@Prop() debug: boolean | "site" | "context" = false
-	@State() cache?: binotype.Site
+	@State() cache?: binotype.Site<VNode>
 	@Watch("site")
 	componentWillLoad() {
 		this.cache = typeof this.site == "string" ? JSON.parse(this.site) : this.site
@@ -18,7 +16,7 @@ export class BinotypeSite implements ComponentWillLoad {
 	render() {
 		return (
 			<Host>
-				{binotype.Site.is(this.cache) ? (
+				{binotype.Site.getType(Node.type as any).is(this.cache) ? (
 					[
 						<Page site={this.cache} debug={this.debug == true || this.debug == "context"}></Page>,
 						(this.debug == true || this.debug == "site") && (
@@ -30,13 +28,13 @@ export class BinotypeSite implements ComponentWillLoad {
 									<pre>{JSON.stringify(this.cache, undefined, 2)}</pre>
 								</code>
 							</details>
-						),
+						)
 					]
 				) : (
 					<Fragment>
 						<h1>Flawed Site Configuration</h1>
 						<code>
-							<pre>{JSON.stringify(binotype.Site.flawed(this.cache), undefined, 2)}</pre>
+							<pre>{JSON.stringify(binotype.Site.getType(Node.type as any).flawed(this.cache), undefined, 2)}</pre>
 						</code>
 					</Fragment>
 				)}

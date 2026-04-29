@@ -9,6 +9,7 @@ export { Header } from "./Header"
 export { Head } from "./Head"
 export { Navigation } from "./Navigation"
 export { Single } from "./Single"
+export { Node } from "./Node"
 
 // Article components
 export { Article } from "./Article"

@@ -1,23 +1,19 @@
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
 import { binotype } from "@binotype/model"
 import { Menu } from "./Menu"
+import { Node } from "./Node"
 
-export const Navigation: FunctionalComponent<Readonly<Navigation.Properties>> & {
-	override: FunctionalComponent<Navigation.Properties>
+export const Navigation: FunctionalComponent<binotype.Context.Menu<Node>> & {
+	override: FunctionalComponent<binotype.Context.Menu<Node>>
 } = (properties, children, utils) => Navigation.override(properties, children, utils)
 Navigation.override = (
-	{ items, depth }: Navigation.Properties,
+	{ items, depth }: binotype.Context.Menu<Node>,
 	children: VNode[],
-	_utils: FunctionalUtilities,
+	_utils: FunctionalUtilities
 ): VNode | VNode[] | null => (
 	<nav>
 		<Menu items={items} depth={depth} />
 		{children}
 	</nav>
 )
-export namespace Navigation {
-	export interface Properties {
-		items: binotype.Context.Menu.Item[]
-		depth?: number
-	}
-}
+export namespace Navigation {}

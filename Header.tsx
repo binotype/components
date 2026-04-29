@@ -1,5 +1,6 @@
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
 import { binotype } from "@binotype/model"
+import { Node } from "./Node"
 
 export const Header: FunctionalComponent<Readonly<Header.Properties>> & {
 	override: FunctionalComponent<Header.Properties>
@@ -7,14 +8,14 @@ export const Header: FunctionalComponent<Readonly<Header.Properties>> & {
 Header.override = (
 	{ context }: Header.Properties,
 	children?: VNode | VNode[] | null,
-	_utils?: FunctionalUtilities,
+	_utils?: FunctionalUtilities
 ): VNode | VNode[] | null => (
 	<header>
 		<h1>
 			<a href={"/"}>
 				{context.design?.logotype ? (
 					<img
-						src={binotype.Site.Page.Path.absolutify(context.design.logotype)}
+						src={binotype.Path.absolutify(context.design.logotype)}
 						alt={`${context.title}${context.tagline ? ` · ${context.tagline}` : ""}`}
 					/>
 				) : (
@@ -28,6 +29,6 @@ Header.override = (
 )
 export namespace Header {
 	export interface Properties {
-		context: binotype.Context
+		context: binotype.Context<Node>
 	}
 }

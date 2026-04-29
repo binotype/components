@@ -1,5 +1,6 @@
 import { Fragment, FunctionalComponent, h } from "@stencil/core"
 import { binotype } from "@binotype/model"
+import { Node } from "./Node"
 
 export const Head: FunctionalComponent<Readonly<Head.Properties>> = ({ context }) => {
 	const result: HTMLElement[] = (
@@ -9,40 +10,40 @@ export const Head: FunctionalComponent<Readonly<Head.Properties>> = ({ context }
 			{ tag: "meta", attributes: { name: "generator", content: "Binotype" } },
 			{
 				tag: "meta",
-				attributes: { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1" },
+				attributes: { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1" }
 			},
 			{ tag: "title", content: context.title },
 			context.design.icon && {
 				tag: "link",
-				attributes: { rel: "icon", href: binotype.Site.Page.Path.absolutify(context.design.icon) },
+				attributes: { rel: "icon", href: binotype.Path.absolutify(context.design.icon) }
 			},
 			...(context.design?.styles?.map(style =>
-				binotype.Site.Page.Path.isUrl(style)
-					? { tag: "link", attributes: { rel: "stylesheet", href: binotype.Site.Page.Path.absolutify(style) } }
-					: { tag: "style", content: style },
+				binotype.Path.isUrl(style)
+					? { tag: "link", attributes: { rel: "stylesheet", href: binotype.Path.absolutify(style) } }
+					: { tag: "style", content: style }
 			) ?? []),
 			...(context.design?.scripts?.map(script =>
-				binotype.Site.Page.Path.isUrl(script)
-					? { tag: "script", attributes: { src: binotype.Site.Page.Path.absolutify(script) } }
-					: { tag: "script", content: script },
+				binotype.Path.isUrl(script)
+					? { tag: "script", attributes: { src: binotype.Path.absolutify(script) } }
+					: { tag: "script", content: script }
 			) ?? []),
 
-			{ tag: "meta", attributes: { property: "og:title", content: context.article?.header?.title ?? context.title } },
+			{ tag: "meta", attributes: { property: "og:title", content: context.article?.title ?? context.title } },
 			context.description && { tag: "meta", attributes: { property: "og:description", content: context.description } },
 			context.image && { tag: "meta", attributes: { property: "og:image", content: context.image } },
 			context.url && { tag: "meta", attributes: { property: "og:url", content: context.url } },
 			{ tag: "meta", attributes: { property: "og:type", content: context.article?.articles ? "website" : "article" } },
 			{ tag: "meta", attributes: { property: "og:site_name", content: context.title } },
-			context.article?.articles &&
-				context.article?.header?.published && {
+			context.article?.articles
+				&& context.article?.published && {
 					tag: "meta",
-					attributes: { property: "article:published_time", content: context.article.header?.published },
+					attributes: { property: "article:published_time", content: context.article.published }
 				},
-			context.article?.articles &&
-				context.article.header?.author && {
+			context.article?.articles
+				&& context.article?.author && {
 					tag: "meta",
-					attributes: { property: "article:author", content: context.article.header?.author },
-				},
+					attributes: { property: "article:author", content: context.article.author }
+				}
 		] as (Element | undefined)[]
 	)
 		.filter((element: Element | undefined): element is Element => element != undefined)
@@ -52,14 +53,12 @@ export const Head: FunctionalComponent<Readonly<Head.Properties>> = ({ context }
 }
 export namespace Head {
 	export interface Properties {
-		context: binotype.Context
+		context: binotype.Context<Node>
 	}
 }
 interface Element {
 	tag: string
-	attributes?: {
-		[key: string]: string
-	}
+	attributes?: { [key: string]: string }
 	content?: string
 }
 function createElement(element: Element): HTMLElement {

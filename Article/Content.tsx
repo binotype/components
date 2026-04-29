@@ -1,15 +1,18 @@
+import { binotype } from "@binotype/model"
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
+import { Node } from "../Node"
 
-export const Content: FunctionalComponent<Content.Properties> & {
-	override: FunctionalComponent<Content.Properties>
+export const Content: FunctionalComponent<binotype.Context.Article<Node>> & {
+	override: FunctionalComponent<binotype.Context.Article<Node>>
 } = (properties, children, utils) => Content.override(properties, children, utils)
 Content.override = (
-	{ content }: Content.Properties,
+	{ content }: binotype.Context.Article<Node>,
 	children: VNode[],
-	_utils: FunctionalUtilities,
-): VNode | VNode[] | null => <main {...(content ? { innerHTML: content } : {})}>{children}</main>
-export namespace Content {
-	export interface Properties {
-		content: string
-	}
-}
+	_utils: FunctionalUtilities
+): VNode | VNode[] | null => (
+	<main>
+		{content}
+		{children}
+	</main>
+)
+export namespace Content {}
