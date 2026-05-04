@@ -1,6 +1,5 @@
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
 import { binotype } from "@binotype/model"
-import { Node } from "./Node"
 
 export const Header: FunctionalComponent<Readonly<Header.Properties>> & {
 	override: FunctionalComponent<Header.Properties>
@@ -29,6 +28,6 @@ Header.override = (
 )
 export namespace Header {
 	export interface Properties {
-		context: binotype.Context<Node>
+		context: binotype.Context<VNode>
 	}
 }

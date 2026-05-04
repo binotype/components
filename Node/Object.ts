@@ -1,5 +1,4 @@
-import type { Node } from "."
-
+import { VNode } from "@stencil/core"
 export interface Object {
 	tag: string | number | Function
 	key?: string | number
@@ -9,7 +8,7 @@ export interface Object {
 	name?: string
 }
 export namespace Object {
-	export function from(node: Node): Object {
+	export function from(node: VNode): Object {
 		return globalThis.Object.fromEntries(
 			globalThis.Object.entries({
 				tag: node.$tag$,

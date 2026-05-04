@@ -6,7 +6,6 @@ import { Header } from "./Header"
 import { List } from "./List"
 import { Navigation } from "./Navigation"
 import { Single } from "./Single"
-import { Node } from "./Node"
 
 export const Page: FunctionalComponent<Readonly<Page.Properties>> & { override: FunctionalComponent<Page.Properties> } =
 	(properties, children, utils) => Page.override(properties, children, utils)
@@ -42,7 +41,7 @@ Page.override = (
 }
 export namespace Page {
 	export interface Properties {
-		site: binotype.Site<Node>
+		site: binotype.Site<VNode>
 		debug?: boolean
 	}
 }

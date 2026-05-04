@@ -7,9 +7,8 @@ import { Footer } from "./Footer"
 import { Header } from "./Header"
 import { Section } from "./Section"
 import { Summary } from "./Summary"
-import { Node } from "../Node"
 
-export const Article: FunctionalComponent<binotype.Context.Article<Node>> & {
+export const Article: FunctionalComponent<binotype.Context.Article<VNode>> & {
 	SelfLink: typeof SelfLink
 	Aside: typeof Aside
 	Content: typeof Content
@@ -17,10 +16,10 @@ export const Article: FunctionalComponent<binotype.Context.Article<Node>> & {
 	Header: typeof Header
 	Section: typeof Section
 	Summary: typeof Summary
-	override: FunctionalComponent<binotype.Context.Article<Node>>
+	override: FunctionalComponent<binotype.Context.Article<VNode>>
 } = (properties, children, utils) => Article.override(properties, children, utils)
 Article.override = (
-	article: binotype.Context.Article<Node>,
+	article: binotype.Context.Article<VNode>,
 	children: VNode[],
 	_: FunctionalUtilities
 ): VNode | VNode[] | null =>

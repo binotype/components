@@ -3,14 +3,13 @@ import { SelfLink } from "../SelfLink"
 import { Content } from "./Content"
 import { Header } from "./Header"
 import { binotype } from "@binotype/model"
-import { Node } from "../Node"
 
-export const Section: FunctionalComponent<binotype.Context.Section<Node>> & {
-	override: FunctionalComponent<binotype.Context.Section<Node>>
-	overrides: Partial<Record<string, FunctionalComponent<binotype.Context.Section<Node>>>>
+export const Section: FunctionalComponent<binotype.Context.Section<VNode>> & {
+	override: FunctionalComponent<binotype.Context.Section<VNode>>
+	overrides: Partial<Record<string, FunctionalComponent<binotype.Context.Section<VNode>>>>
 } = (properties, children, utils) => Section.override(properties, children, utils)
 Section.override = (
-	properties: binotype.Context.Section<Node>,
+	properties: binotype.Context.Section<VNode>,
 	children: VNode[],
 	_utils: FunctionalUtilities
 ): VNode | VNode[] | null =>
@@ -18,7 +17,7 @@ Section.override = (
 	|| null
 Section.overrides = {
 	default: (
-		section: binotype.Context.Section<Node>,
+		section: binotype.Context.Section<VNode>,
 		children: VNode[],
 		_utils: FunctionalUtilities
 	): VNode | VNode[] | null => (

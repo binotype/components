@@ -1,18 +1,17 @@
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
 import { Meta } from "./Meta"
 import { binotype } from "@binotype/model"
-import { Node } from "../Node"
 
-export const Header: FunctionalComponent<binotype.Context.Article<Node>> & {
-	override: FunctionalComponent<binotype.Context.Article<Node>>
+export const Header: FunctionalComponent<binotype.Context.Article<VNode>> & {
+	override: FunctionalComponent<binotype.Context.Article<VNode>>
 } = (properties, children, utils) => Header.override(properties, children, utils)
 Header.override = (
-	{ title, ...meta }: binotype.Context.Article<Node>,
+	{ title, ...meta }: binotype.Context.Article<VNode>,
 	children: VNode[],
 	_utils: FunctionalUtilities
 ): VNode | VNode[] | null => (
 	<header>
-		{title && <h1>{title}</h1>}
+		{title && <h1>{title.formatted}</h1>}
 		<Meta {...meta} />
 		<a href="../">
 			<svg width="2em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

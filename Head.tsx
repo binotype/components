@@ -1,6 +1,5 @@
-import { Fragment, FunctionalComponent, h } from "@stencil/core"
+import { Fragment, FunctionalComponent, h, VNode } from "@stencil/core"
 import { binotype } from "@binotype/model"
-import { Node } from "./Node"
 
 export const Head: FunctionalComponent<Readonly<Head.Properties>> = ({ context }) => {
 	const result: HTMLElement[] = (
@@ -53,7 +52,7 @@ export const Head: FunctionalComponent<Readonly<Head.Properties>> = ({ context }
 }
 export namespace Head {
 	export interface Properties {
-		context: binotype.Context<Node>
+		context: binotype.Context<VNode>
 	}
 }
 interface Element {

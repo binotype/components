@@ -31,7 +31,6 @@ globalThis.Reflect ??= Reflect
 globalThis.RegExp ??= RegExp
 globalThis.ReferenceError ??= ReferenceError
 globalThis.Set ??= Set
-// globalThis.SharedArrayBuffer ??= SharedArrayBuffer
 globalThis.String ??= String
 globalThis.Symbol ??= Symbol
 globalThis.SyntaxError ??= SyntaxError
@@ -44,3 +43,4 @@ globalThis.URIError ??= URIError
 globalThis.WeakMap ??= WeakMap
 globalThis.WeakRef ??= WeakRef
 globalThis.WeakSet ??= WeakSet
+
