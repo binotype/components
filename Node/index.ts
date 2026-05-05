@@ -22,7 +22,7 @@ export namespace Node {
 	// ) as isly.Object<Node>
 	export const { is, flawed } = type.bind()
 	export function plain(node: Node): string {
-		return [node.$text$ ?? "", ...node.$children$?.map(plain)].join("")
+		return [node.$text$ ?? "", ...(node.$children$?.map(plain) ?? [])].join("")
 	}
 }
 

@@ -43,4 +43,3 @@ globalThis.URIError ??= URIError
 globalThis.WeakMap ??= WeakMap
 globalThis.WeakRef ??= WeakRef
 globalThis.WeakSet ??= WeakSet
-
