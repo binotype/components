@@ -1,8 +1,8 @@
+import { binotype } from "@binotype/model"
 import { FunctionalComponent, FunctionalUtilities, h, VNode } from "@stencil/core"
 import { SelfLink } from "../SelfLink"
 import { Content } from "./Content"
 import { Header } from "./Header"
-import { binotype } from "@binotype/model"
 
 export const Section: FunctionalComponent<binotype.Context.Section<VNode>> & {
 	override: FunctionalComponent<binotype.Context.Section<VNode>>
