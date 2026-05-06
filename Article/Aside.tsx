@@ -8,10 +8,11 @@ Aside.override = (
 	article: binotype.Context.Article<VNode>,
 	children: VNode[],
 	_utils: FunctionalUtilities
-): VNode | VNode[] | null => (
-	<aside>
-		{typeof article.meta.image == "string" && <img src={article.meta.image} title={article.title?.plain} />}
-		{children}
-	</aside>
-)
+): VNode | VNode[] | null =>
+	children.length == 0 && typeof article.meta.image != "string" ? null : (
+		<aside>
+			{typeof article.meta.image == "string" && <img src={article.meta.image} title={article.title?.plain} />}
+			{children}
+		</aside>
+	)
 export namespace Aside {}
