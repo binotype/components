@@ -2,6 +2,6 @@ import { dom } from "@typeup/dom"
 import { h } from "@stencil/core"
 import { convert, register } from "../../convert"
 
-register("block.list.definition.term", async (node: dom.Block.List.Definition.Term) => (
+register("block.list.item", async (node: dom.Block.List.Item) => (
 	<li>{await convert(node.content)}</li>
 ))
